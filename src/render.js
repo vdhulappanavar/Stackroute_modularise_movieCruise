@@ -1,5 +1,6 @@
 import {appState} from './appState'
 import {dashboardComponentController} from './dashboardComponent/dashboardComponentController'
+import {addMyCollectionsComponentController} from './addMyCollectionsComponent/addMyCollectionsComponentController'
 export function renderCurrentView(){
   console.log("render")
   $("#app").html('')
@@ -18,6 +19,7 @@ export function renderCurrentView(){
     case 'AddTocollection' :
       console.log("in AddTocollection case")
       console.log("To Add this movie ID " + appState["addToCollectionId"])
+      addMyCollectionsComponentController()
       //template=dashboardComponentController()
       //dashboardComponentController()
         break;

@@ -1,6 +1,14 @@
-import {appState} from '../appState'
+import {appState , chnageCurrentView} from '../appState'
 import {getMovieListData} from './getMovieListData'
+import {createViewForMovieList} from './createViewForMovieList'
+function dummyOnClick1(){
+  console.log("in dummy on click1")
+  console.log($(this).attr("id"))
+  appState["addToCollectionId"] = $(this).attr("id")
+  chnageCurrentView('AddTocollection')
+}
 export function dashboardComponentController(){
+  let temporaryViewTemplate = "TESTING123"
   console.log("in dashboardComponentController")
   console.log(appState)
   if(appState['dashboardMovieList'].length == 0){
@@ -29,9 +37,17 @@ export function dashboardComponentController(){
       getMovieListData(category)
         .then(res => {
           console.log(res.results[0]['title'])
+          temporaryViewTemplate +=res.results[0]['title']
+          console.log("inside for each : " +  temporaryViewTemplate)
+          createViewForMovieList(res.results)
+          //return temporaryViewTemplate
+          //$("#app").append(temporaryViewTemplate)
           
+          $("#app").append(createViewForMovieList(res.results))
+          $(".testClick").on("click" , dummyOnClick1)
         })
     })
   }
   console.log("exit dashboardComponentController")
+  
 }

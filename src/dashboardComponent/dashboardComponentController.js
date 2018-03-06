@@ -27,6 +27,7 @@ export function dashboardComponentController(){
     categorys.forEach(category => {
       console.log(category)
       getMovieListData(category)
+        .then(res => console.log(res.results[0]['title']))
     })
   }
   console.log("exit dashboardComponentController")

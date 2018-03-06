@@ -2,14 +2,25 @@ import {appState , chnageCurrentView} from '../appState'
 import {displayExistingCollections} from './displayExistingCollections' 
 
 
+function render(){
+  $("#myCollectionsList").html('')
+  $("#myCollectionsList").append(displayExistingCollections())
+  $(".editCollectionName").click(editCollectionName);
+  $(".deleteCollectionName").click(deleteCollectionName)
+  $(".addToExistingCollection").click(addToExistingCollection)
+}
+
+function addToExistingCollection(){
+  console.log($(this).attr("id"))
+  let toEditCollectionId = $(this).attr("id")
+  appState["myCollections"][toEditCollectionId].push(appState["addToCollectionId"])
+  render()
+}
+
 function deleteCollectionName(){
   console.log($(this).attr("id"))
   delete appState["myCollections"][$(this).attr("id")];
-  $("#myCollectionsList").html('')
-    $("#myCollectionsList").append(displayExistingCollections())
-    $(".editCollectionName").click(editCollectionName);
-    $(".deleteCollectionName").click(deleteCollectionName)
-
+  render()
 }
 
 
@@ -36,10 +47,7 @@ function editCollectionName(){
     appState["myCollections"][$("#editCollectionName").val()] = appState["myCollections"][toEditCollectionId].slice()
     delete appState["myCollections"][toEditCollectionId]
 
-    $("#myCollectionsList").html('')
-    $("#myCollectionsList").append(displayExistingCollections())
-    $(".editCollectionName").click(editCollectionName);
-    $(".deleteCollectionName").click(deleteCollectionName)
+    render()
   })
 
 }
@@ -64,10 +72,7 @@ function addNewCollection(){
     
     appState["myCollections"][serchTerm].push(appState["addToCollectionId"])
     //appState["myCollections"][]
-    $("#myCollectionsList").html('')
-    $("#myCollectionsList").append(displayExistingCollections())
-    $(".editCollectionName").click(editCollectionName);
-    $(".deleteCollectionName").click(deleteCollectionName)
+    render()
     console.log("myCollections:::")
     console.log(appState)
     

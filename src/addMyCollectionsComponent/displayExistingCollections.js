@@ -86,8 +86,9 @@ Object.keys(myCollectionsList).forEach(collectionName =>{
   <ul class="collection with-header">
   <li class="collection-header">
   <div class="row">
-    <h4 class="col s6" id=${collectionName}>${collectionName}</h4> 
+    <h4 class="col s6 collectionNameToEdit" id=${collectionName}>${collectionName}</h4> 
     <div class="col s6 align-right">
+    <a id=${collectionName} class="addToCollection btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
       <a id=${collectionName} class="editCollectionName btn-floating btn-large waves-effect waves-light"><i class="material-icons">mode_edit</i></a>
       <a id=${collectionName} class="deleteCollectionName btn-floating btn-large waves-effect waves-light"><i class="material-icons">delete</i></a>
     </div>

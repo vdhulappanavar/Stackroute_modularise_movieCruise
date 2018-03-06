@@ -7,6 +7,16 @@ function dummyOnClick1(){
   appState["addToCollectionId"] = $(this).attr("id")
   chnageCurrentView('AddTocollection')
 }
+
+function addToAppStoreMovieCache(list){
+  list.forEach(movie => {
+    appState["movieInfoCache"][movie.id] = movie;
+  })
+  console.log("**********")
+  console.log(appState)
+  console.log("***********")
+}
+
 export function dashboardComponentController(){
   let temporaryViewTemplate = "TESTING123"
   console.log("in dashboardComponentController")
@@ -36,6 +46,8 @@ export function dashboardComponentController(){
       console.log(category)
       getMovieListData(category)
         .then(res => {
+          console.log(res.results)
+          addToAppStoreMovieCache(res.results)
           console.log(res.results[0]['title'])
           temporaryViewTemplate +=res.results[0]['title']
           console.log("inside for each : " +  temporaryViewTemplate)
